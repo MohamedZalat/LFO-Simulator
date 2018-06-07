@@ -16,7 +16,6 @@ import lfo.agents.force.ForceStraightLineAgent;
 import lfo.agents.matlab.DiscreteNNetAgent;
 import lfo.agents.matlab.ForceBNetAgent;
 import lfo.agents.matlab.ForceNNetAgent;
-import lfo.learning.level2.WekaContinuousLearner;
 import lfo.learning.level3.Level2WrapperWithoutActions;
 import lfo.simulator.LearningTrace;
 import lfo.simulator.State;
@@ -41,7 +40,6 @@ public class TraceVisualizerFromForceAgent {
 //        a = new ForceSmarterStraightLineAgent();
 //        a = learnForceNNetAgent("ForceStraightLineAgent",10);
 //        a = learnForceBNetAgent("ForceStraightLineAgent",10);
-        a = learnForceWekaAgent("ForceStraightLineAgent");
 //        a = learnForceWekaAgent("ForceSmartStraightLineAgent");
 //        a = learnForceWekaAgent("ForceSmarterStraightLineAgent");
 /*
@@ -96,20 +94,6 @@ public class TraceVisualizerFromForceAgent {
         return new ForceBNetAgent(traces,10);
     }
 
-    public static Agent learnForceWekaAgent(String expert) throws Exception {
-        List<LearningTrace> traces = new LinkedList<LearningTrace>();
-        Perception p = new ForceFourRayDistancePerception(0.1);
-        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m0-" + expert + ".xml").getRootElement()), p));
-        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m1-" + expert + ".xml").getRootElement()), p));
-        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m2-" + expert + ".xml").getRootElement()), p));
-        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m3-" + expert + ".xml").getRootElement()), p));
-        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m4-" + expert + ".xml").getRootElement()), p));
-//        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m5-" + expert + ".xml").getRootElement()), p));
-        traces.add(new LearningTrace(new Trace(new SAXBuilder().build("traces-forcefourraydistance/trace-m6-" + expert + ".xml").getRootElement()), p));
-//        return new LFOAgent(new WekaContinuousLearner(),traces);
-        return new LFOAgent(new Level2WrapperWithoutActions(2,new WekaContinuousLearner()),traces);
-//        return new LFOAgent(new Level2WrapperWithoutActions(3,new WekaContinuousLearner()),traces);
-//        return new LFOAgent(new Level2WrapperWithoutActions(5,new WekaContinuousLearner()),traces);
-    }
+
 
 }
