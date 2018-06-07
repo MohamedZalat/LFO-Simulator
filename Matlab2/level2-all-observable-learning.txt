@@ -1,0 +1,127 @@
+% Learning using Level 2 from traces, assuming ALL variables are observable:
+% This file assumes that there is only one control variable (Y)
+
+seed = 0;
+rand('state', seed);
+%{
+CSIZE = 1;
+XSIZE = 8;
+learningtraces = 	{'trace-m0-SmartRandomAgent.txt' 
+					 'trace-m1-SmartRandomAgent.txt'
+					 'trace-m2-SmartRandomAgent.txt'
+					 'trace-m3-SmartRandomAgent.txt'
+					 'trace-m4-SmartRandomAgent.txt'};
+testtraces = 		{'trace-m5-SmartRandomAgent.txt' 
+					 'trace-m6-SmartRandomAgent.txt'};
+
+CSIZE = 1;
+XSIZE = 0;
+learningtraces = 	{'simple-2state.txt'};
+testtraces = 		{'simple-2state.txt'};
+
+CSIZE = 1;
+XSIZE = 1;
+learningtraces = 	{'simple-2state-irrelevant-perception.txt'};
+testtraces = 		{'simple-2state-irrelevant-perception.txt'};
+
+CSIZE = 2;
+XSIZE = 8;
+learningtraces = 	{'trace-m0-ZigZagAgent.txt' 
+					 'trace-m1-ZigZagAgent.txt'
+					 'trace-m2-ZigZagAgent.txt'
+					 'trace-m3-ZigZagAgent.txt'
+					 'trace-m4-ZigZagAgent.txt'};
+testtraces = 		{'trace-m5-ZigZagAgent.txt' 
+					 'trace-m6-ZigZagAgent.txt'};
+%}	 
+CSIZE = 1;
+XSIZE = 8;
+learningtraces = 	{'trace-m0-StraightLineAgent.txt' 
+					 'trace-m1-StraightLineAgent.txt'
+					 'trace-m2-StraightLineAgent.txt'
+					 'trace-m3-StraightLineAgent.txt'
+					 'trace-m4-StraightLineAgent.txt'};
+testtraces = 		{'trace-m5-StraightLineAgent.txt' 
+					 'trace-m6-StraightLineAgent.txt'};
+					 
+VARS = CSIZE + XSIZE + 1;					 
+nlearningtraces =length(learningtraces);
+data = [];
+for i = 1:nlearningtraces
+	data = [data ; load(['C:\my-research\FullBNT-1.0.7\santi-experiments\traces\' learningtraces{i}])];
+end
+ncases = size(data, 1);		% number of data points
+cases = cell(VARS,ncases);		% create an empty table to store the data to be given to the learning algorithm
+cases = num2cell(data');		% copy the data, since the first variable is hidden, we don't copy it
+
+ntesttraces =length(testtraces);
+testdata = [];
+for i = 1:ntesttraces
+	testdata = [testdata ; load(['C:\my-research\FullBNT-1.0.7\santi-experiments\traces\' testtraces{i}])];
+end
+
+
+dag = zeros(VARS,VARS);								% we will have VARS variables
+% C depends on X:
+for c = 1:CSIZE
+  for x = 1:XSIZE
+    dag(x+CSIZE,c) = 1;
+  end
+end
+% Y depends on X and C:
+for x = 1:XSIZE
+  dag(x+CSIZE,1+CSIZE+XSIZE) = 1;
+end
+for c = 1:CSIZE
+  dag(c,1+CSIZE+XSIZE) = 1;
+end
+dag
+bnet = mk_bnet(dag, max(data), 'discrete', 1:VARS)	% creates a 2 variable bayes net, the last parameter specifies which variables are observable
+for i = 1:VARS
+	bnet.CPD{i} = tabular_CPD(bnet, i);
+end
+
+bnet2 = learn_params(bnet, cases);				% Learn using maximum likelihood
+
+%{
+CPT1 = cell(1,VARS);								% now visualize the results:
+CPT2 = cell(1,VARS);								% now visualize the results:
+for i=1:VARS
+  s1=struct(bnet.CPD{i});  % violate object privacy
+  s2=struct(bnet2.CPD{i});  % violate object privacy
+  CPT1{i}=s1.CPT;
+  CPT2{i}=s2.CPT;
+end
+celldisp(CPT1)
+celldisp(CPT2)
+%}
+
+% Now test the model:
+engine1 = jtree_inf_engine(bnet);
+engine2 = jtree_inf_engine(bnet2);
+
+correct1 = 0;
+correct2 = 0;
+total = 0;
+
+for i=1:size(testdata, 1);
+	evidence = cell(1,VARS);
+	for j=1:CSIZE+XSIZE
+		evidence{j} = testdata(i,j);
+	end
+	[engine1t, loglik1] = enter_evidence(engine1, evidence);
+	[engine2t, loglik2] = enter_evidence(engine2, evidence);
+	marg1 = marginal_nodes(engine1t, CSIZE+XSIZE+1);
+	marg2 = marginal_nodes(engine2t, CSIZE+XSIZE+1);
+	prediction1 = argmax(marg1.T);
+	prediction2 = argmax(marg2.T);
+	if prediction1 == testdata(i,CSIZE+XSIZE+1)
+		correct1 = correct1 + 1;
+	end
+	if prediction2 == testdata(i,CSIZE+XSIZE+1)
+		correct2 = correct2 + 1;
+	end
+	total = total + 1;
+end
+correct1/total
+correct2/total

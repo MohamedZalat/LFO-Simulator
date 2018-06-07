@@ -1,0 +1,267 @@
+
+%[random1,l2o1] = evaluateLevel2ObservableAgent('RandomAgent',7,4,8)
+%[random2,l2o2] = evaluateLevel2ObservableAgent('RandomExplorerAgent',7,4,8)
+%[random3,l2o3] = evaluateLevel2ObservableAgent('SmartRandomAgent',7,4,8)
+%[random4,l2o4] = evaluateLevel2ObservableAgent('SmartRandomExplorerAgent',7,4,8)
+%[random5,l2o5] = evaluateLevel2ObservableAgent('StraightLineAgent',7,4,8)
+%[random6,l2o6] = evaluateLevel2ObservableAgent('SmartStraightLineAgent',7,4,8)
+%[random7,l2o7] = evaluateLevel2ObservableAgent('ZigZagAgent',7,4,8)
+%[random8,l2o8] = evaluateLevel2ObservableAgent('FixedSequenceAgent',7,4,8)
+%[random9,l2o9] = evaluateLevel2ObservableAgent('PauseEvery3SmartRandomAgent',7,4,8)
+%[random10,l2o10] = evaluateLevel2ObservableAgent('PauseEvery3SmartStraightLineAgent',7,4,8)
+
+%[random1 random2 random3 random4 random5 random6 random7 random8 random9 random10 ; l2o1 l2o2 l2o3 l2o4 l2o5 l2o6 l2o7 l2o8 l2o9 l2o10]
+% straight line:
+%    0.2000    0.1947    0.2077    0.0789    0.2546    0.1520    0.3009    0.2206    0.1840    0.2424
+%    0.2007    0.4790    0.3086    0.1031    0.9466    0.9214    0.6804    0.5283    0.5386    0.9300
+% window:
+% ...
+% ...
+
+
+
+[random1,l21] = evaluateLevel2Agent('WallFollowerAgent',7,0,8)
+[random1,l21] = evaluateLevel2Agent('SmartWallFollowerAgent',7,0,8)
+[random2,l22] = evaluateLevel2Agent('RandomAgent',7,0,8)
+[random3,l23] = evaluateLevel2Agent('SmartRandomAgent',7,0,8)
+[random4,l24] = evaluateLevel2Agent('StraightLineAgent',7,0,8)
+[random5,l25] = evaluateLevel2Agent('SmartStraightLineAgent',7,0,8)
+[random6,l26] = evaluateLevel2Agent('ZigZagAgent',7,0,8)
+[random7,l27] = evaluateLevel2Agent('FixedSequenceAgent',7,0,8)
+
+
+%prefix = '/Users/santi/NetBeansProjects/LFOSimulator/traces-fourraydistance/';
+%prefix = 'C:\\Users\\santi\\Documents\\NetBeansProjects\\LFOSimulator\\traces-fourraydistance\\'
+prefix = 'M:\\Desktop\\workspace\\LFOsimulator\\LFO-traces-fourraydistance\\'
+[random2,l32] = evaluateLevel3Agent('WallFollowerAgent',prefix,7,1,8,20,10)
+[random2,l32] = evaluateLevel3Agent('SmartWallFollowerAgent',prefix,7,1,8,20,10)
+[random2,l32] = evaluateLevel3Agent('RandomAgent',prefix,7,1,8,20,10)
+[random2,l32] = evaluateLevel3Agent('SmartRandomAgent',prefix,7,1,8,20,10)
+[random3,l33] = evaluateLevel3Agent('StraightLineAgent',prefix,7,1,8,20,10)
+[random3,l33] = evaluateLevel3Agent('SmartStraightLineAgent',prefix,7,1,8,20,10)
+[random4,l34] = evaluateLevel3Agent('ZigZagAgent',prefix,7,1,8,20,10)
+[random1,l31] = evaluateLevel3Agent('FixedSequenceAgent',prefix,7,1,8,20,10)
+
+[random2,l32] = evaluateLevel3IOHMMAgent('WallFollowerAgent',prefix,7,1,8,20,10)
+[random2,l32] = evaluateLevel3IOHMMAgent('SmartWallFollowerAgent',prefix,7,1,8,20,10)
+[random2,l32] = evaluateLevel3IOHMMAgent('RandomAgent',prefix,7,1,8,20,10)
+[random2,l32] = evaluateLevel3IOHMMAgent('SmartRandomAgent',prefix,7,1,8,20,10)
+[random3,l33] = evaluateLevel3IOHMMAgent('StraightLineAgent',prefix,7,1,8,20,10)
+[random3,l33] = evaluateLevel3IOHMMAgent('SmartStraightLineAgent',prefix,7,1,8,20,10)
+[random4,l34] = evaluateLevel3IOHMMAgent('ZigZagAgent',prefix,7,1,8,20,10)
+[random1,l31] = evaluateLevel3IOHMMAgent('FixedSequenceAgent',prefix,7,1,8,20,10)
+
+
+
+
+nn1 = evaluateNNAgent('WallFollowerAgent',7,0,8)
+nn2 = evaluateNNAgent('SmartWallFollowerAgent',7,0,8)
+nn3 = evaluateNNAgent('RandomAgent',7,0,8)
+nn4 = evaluateNNAgent('SmartRandomAgent',7,0,8)
+nn5 = evaluateNNAgent('StraightLineAgent',7,0,8)
+nn6 = evaluateNNAgent('SmartStraightLineAgent',7,0,8)
+nn7 = evaluateNNAgent('ZigZagAgent',7,0,8)
+nn8 = evaluateNNAgent('FixedSequenceAgent',7,0,8)
+nn9 = evaluateNNAgent('SmartRandomExplorerAgent',7,1,8)
+nn10 = evaluateNNAgent('RandomExplorerAgent',7,1,8)
+nn11 = evaluateNNAgent('PauseEvery3SmartRandomAgent',7,2,8)
+nn12 = evaluateNNAgent('PauseEvery3SmartStraightLineAgent',7,2,8)
+
+%[nn1 nn2 nn3 nn4 nn5 nn6 nn7 nn8 nn9 nn10 nn11 nn12]
+[nn1 nn2 nn3 nn4 nn5 nn6 nn7 nn8]
+
+%prefix = '/Users/santi/NetBeansProjects/LFOSimulator/traces-fourraydistance/';
+%prefix = 'C:\\Users\\santi\\Documents\\NetBeansProjects\\LFOSimulator\\traces-fourraydistance\\'
+prefix = 'M:\\Desktop\\workspace\\LFOsimulator\\LFO-traces-fourraydistance\\'
+nn1 = evaluateNNOrderKAgent('WallFollowerAgent',prefix,7,0,8,2)
+nn2 = evaluateNNOrderKAgent('SmartWallFollowerAgent',prefix,7,0,8,2)
+nn3 = evaluateNNOrderKAgent('RandomAgent',prefix,7,0,8,2)
+nn4 = evaluateNNOrderKAgent('SmartRandomAgent',prefix,7,0,8,2)
+nn5 = evaluateNNOrderKAgent('StraightLineAgent',prefix,7,0,8,2)
+nn6 = evaluateNNOrderKAgent('SmartStraightLineAgent',prefix,7,0,8,2)
+nn7 = evaluateNNOrderKAgent('ZigZagAgent',prefix,7,0,8,2)
+nn8 = evaluateNNOrderKAgent('FixedSequenceAgent',prefix,7,0,8,2)
+nn1 = evaluateNNOrderKAgent('RandomAgent',7,1,8,2)
+nn2 = evaluateNNOrderKAgent('RandomExplorerAgent',7,1,8,2)
+nn5 = evaluateNNOrderKAgent('StraightLineAgent',7,1,8,2)
+nn9 = evaluateNNOrderKAgent('PauseEvery3SmartRandomAgent',7,2,8,2)
+nn10 = evaluateNNOrderKAgent('PauseEvery3SmartStraightLineAgent',7,2,8,2)
+
+%[nn1 nn2 nn3 nn4 nn5 nn6 nn7 nn8 nn9 nn10]
+[nn1 nn2 nn3 nn4 nn5 nn6 nn7 nn8]
+
+
+%prefix = '/Users/santi/NetBeansProjects/LFOSimulator/traces-fourraydistance/';
+%prefix = 'C:\\Users\\santi\\Documents\\NetBeansProjects\\LFOSimulator\\traces-fourraydistance\\'
+prefix = 'M:\\Desktop\\workspace\\LFOsimulator\\LFO-traces-fourraydistance\\'
+[random1,l21] = evaluateLevel2OrderKAgent('WallFollowerAgent',prefix,7,0,8,20,2)
+[random3,l23] = evaluateLevel2OrderKAgent('SmartWallFollowerAgent',prefix,7,0,8,20,2)
+[random1,l21] = evaluateLevel2OrderKAgent('RandomAgent',prefix,7,0,8,20,2)
+[random3,l23] = evaluateLevel2OrderKAgent('SmartRandomAgent',prefix,7,0,8,20,2)
+[random5,l25] = evaluateLevel2OrderKAgent('StraightLineAgent',prefix,7,0,8,20,2)
+[random6,l26] = evaluateLevel2OrderKAgent('SmartStraightLineAgent',prefix,7,0,8,20,2)
+[random7,l27] = evaluateLevel2OrderKAgent('ZigZagAgent',prefix,7,0,8,20,2)
+[random8,l28] = evaluateLevel2OrderKAgent('FixedSequenceAgent',prefix,7,0,8,20,2)
+
+[random1 random2 random3 random4 random5 random6 random7 random8 random9 random10 ; l21 l22 l23 l24 l25 l26 l27 l28 l29 l210]
+
+
+
+%%% 
+%%% To compute the full matrix:
+%%%
+agents = {'FixedSequenceAgent';'RandomAgent';'SmartRandomAgent';'WallFollowerAgent';'SmartWallFollowerAgent';'StraightLineAgent';'SmartStraightLineAgent';'ZigZagAgent';'RandomExplorerAgent';'SmartRandomExplorerAgent'};
+for a1 = 1:size(agents,1)
+for a2 = 1:size(agents,1)
+agent1 = agents{a1};
+agent2 = agents{a2};
+traces1 = [];
+traces2 = [];
+for i = 0:6
+	trace1 = ['M:/Desktop/workspace/LFOsimulator/traces-fourraydistance/trace-m' num2str(i) '-' agent1 '.txt'];
+	traces1 = [traces1;trace1];
+	trace2 = ['M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m' num2str(i) '-' agent2 '.txt'];
+	traces2 = [traces2;trace2];
+end
+disp(['Evaluating the similarity of experts: ' agent1 ' vs ' agent2]);
+sym = traceSimilarityLFODBN(traces1, traces2, 10,4,8,1)
+end
+end
+
+
+%%% 
+%%% Vacuum Cleaner domain evaluation (Expert vs Expert)
+%%%
+agents = {'WallFollowerAgent';'SmartWallFollowerAgent';'RandomAgent';'SmartRandomAgent';'StraightLineAgent';'SmartStraightLineAgent';'ZigZagAgent';'FixedSequenceAgent'};
+models1 = {};
+for a1 = 1:size(agents,1)
+	agent1 = agents{a1};
+	traces1 = [];
+	for i = 0:6
+		trace1 = ['M:/Desktop/workspace/LFOsimulator/traces-fourraydistance/trace-m' num2str(i) '-' agent1 '.txt'];
+		traces1 = [traces1;trace1];
+	end
+	[dbn1,engine1] = learnLfODBN(traces1,20,4,8,1,'tmp.txt');
+	models1{a1} = engine1;
+end
+%%% sizes = [1 2 5 10 20 50 100 200 500 1000];
+sizes = [1000];
+for i = 1:size(sizes,2)
+	N = sizes(i);
+	disp(['Risk rate for N = ' num2str(N)])
+	for a1 = 1:size(agents,1)
+		agent1 = agents{a1};
+		res = [];
+		for a2 = 1:size(agents,1)
+			traces1 = [];
+			for j = 0:6
+				trace1 = ['M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m' num2str(j) '-' agent1 '.txt'];
+				traces1 = [traces1;trace1];
+			end
+			sym = traceSimilarityLFODBNPepe(models1{a2}, traces1, N, 8,1);
+			res = [res ' & ' num2str(sym)];
+		end
+		disp(res);
+	end
+	disp([' ']);
+end
+
+
+%%% 
+%%% Vacuum Cleaner domain evaluation (LFO vs Expert)
+%%%
+agents = {'WallFollowerAgent';'SmartWallFollowerAgent';'RandomAgent';'SmartRandomAgent';'StraightLineAgent';'SmartStraightLineAgent';'ZigZagAgent';'FixedSequenceAgent'};
+lfo_methods = {'nnet';'nnetk2';'bnet';'bnetk2';'lfodbn';'iohmm'};
+for lfoi = 1:size(lfo_methods,1)
+	lfo = lfo_methods{lfoi};
+	disp(['Experiments for LFO = ' lfo])
+	models1 = {};
+	for a1 = 1:size(agents,1)
+		agent1 = agents{a1};
+		traces1 = [];
+		for i = 0:6
+			trace1 = ['M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' lfo '/trace-m' num2str(i) '-' agent1 '.txt'];
+			traces1 = [traces1;trace1];
+		end
+		[dbn1,engine1] = learnLfODBN(traces1,20,4,8,1,'tmp.txt');
+		models1{a1} = engine1;
+	end
+	sizes = [1000];
+	for i = 1:size(sizes,2)
+		N = sizes(i);
+		disp(['Risk rate for N = ' num2str(N)])
+		for a1 = 1:size(agents,1)
+			agent1 = agents{a1};
+			traces1 = [];
+			for j = 0:6
+				trace1 = ['M:/Desktop/workspace/LFOsimulator/traces-fourraydistance/trace-m' num2str(j) '-' agent1 '.txt'];
+				traces1 = [traces1;trace1];
+			end
+			sym = traceSimilarityLFODBNPepe(models1{a1}, traces1, N, 8,1);
+			disp(num2str(sym));
+		end
+		disp([' ']);
+	end
+end
+
+
+
+%%% 
+%%% Toy domain evaluation
+%%%
+%agents = {'ToyFixedSequenceAgent';'ToyRandomAgent';'ToyLevel2AgentA';'ToyLevel2AgentB';'ToyLevel2AgentAStochastic';'ToyLevel2AgentBStochastic';'ToyStraightRandomAgent';'ToyStraightLineAgent'};
+%models1 = {};
+% models2 = {};
+%for a1 = 1:size(agents,1)
+%	agent1 = agents{a1};
+%	traces1 = ['traces-toy/trace-1000-m0-' agent1 '.txt'];
+%	[dbn1,engine1] = learnLfODBN(traces1,20,2,1,1,'tmp.txt');
+%	models1{a1} = engine1;
+%end
+%sizes = [1 2 5 10 20 50 100 200 500 1000];
+% sizes = [1 2 5 10 20 30 40 50 60 70 80 90 100];
+%for i = 1:size(sizes,2)
+%	N = sizes(i);
+%	disp(['Risk rate for N = ' num2str(N)])
+%	for a1 = 1:size(agents,1)
+%		res = [];
+%		for a2 = 1:size(agents,1)
+%			traces1 = ['traces-toy/trace-1000-m0-' agents{a1} '.txt'];
+%			sym = traceSimilarityLFODBNPepe(models1{a2}, traces1, N, 1,1);
+%			res = [res ' & ' num2str(sym)];
+%		end
+%		disp(res);
+%	end
+%	disp([' ']);
+%end
+
+
+
+%%% 
+%%% Toy2 domain evaluation
+%%%
+%agents = {'Toy2FixedSequenceAgent';'Toy2RandomAgent';'Toy2StraightRandomAgent';'Toy2StraightLineAgent';'Toy2Circler'};
+%models1 = {};
+%models2 = {};
+%for a1 = 1:size(agents,1)
+%	agent1 = agents{a1};
+%	traces1 = ['traces-toy2/trace-a-1000-m2-' agent1 '.txt'];
+%	traces2 = ['traces-toy2/trace-b-1000-m2-' agent1 '.txt'];
+%	[dbn1,engine1] = learnLfODBN(traces1,20,1,2,1);
+%	[dbn2,engine2] = learnLfODBN(traces2,20,1,2,1);
+%	models1{a1} = engine1;
+%	models2{a1} = engine2;
+%%	models1{a1} = jtree_inf_engine(dbn1);
+%%	models2{a1} = jtree_inf_engine(dbn2);
+%end
+%for a1 = 1:size(agents,1)
+%for a2 = 1:size(agents,1)
+%agent1 = agents{a1};
+%agent2 = agents{a2};
+%traces1 = ['traces-toy2/trace-a-1000-m2-' agent1 '.txt'];
+%traces2 = ['traces-toy2/trace-b-1000-m2-' agent2 '.txt'];
+%sym = traceSimilarityLFODBN(models1{a1}, models2{a2}, traces1, traces2,2,1);
+%disp(['Evaluating the similarity of experts: ' agent1 ' vs ' agent2 ': ' num2str(sym)]);
+%end
+%end
+

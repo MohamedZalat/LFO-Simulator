@@ -1,0 +1,17 @@
+<simulationstate>
+  <map dx="10" dy="14"/>
+  <objects>
+    <vacuum id = "1">
+      <x>1.5</x>
+      <y>2.5</y>
+	  <angle>0</angle>
+      <shape><square dx = "1" dy = "1"/></shape>
+    </vacuum>
+    <obstacle id = "2">
+      <x>4</x>
+      <y>4</y>
+	  <angle>0</angle>
+      <shape><square dx = "4" dy = "4"/></shape>
+    </obstacle>
+  </objects>
+</simulationstate>

@@ -1,0 +1,42 @@
+%%% 
+%%% Vacuum cleaner domain evaluation
+%%%
+agents = {'FixedSequenceAgent';'RandomAgent';'SmartRandomAgent';
+		  'WallFollowerAgent';'SmartWallFollowerAgent';
+		  'StraightLineAgent';'SmartStraightLineAgent';'ZigZagAgent'};
+%learners ={'expert';'random';'memorize'};
+%learners ={'expert';'random';'memorize';'nnet';'nnetk2';'bnet';'bnetk2';'lfodbn'};
+learners ={'random';'memorize';'nnet';'nnetk2';'bnet';'bnetk2';'lfodbn'};
+for a1 = 1:size(agents,1)
+	agent1 = agents{a1};
+	traces1 = ['M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m0-' agent1 '.txt';
+			   'M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m1-' agent1 '.txt';
+			   'M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m2-' agent1 '.txt';
+			   'M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m3-' agent1 '.txt';
+			   'M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m4-' agent1 '.txt';
+			   'M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m5-' agent1 '.txt';
+			   'M:/Desktop/workspace/LFOsimulator/traces-fourraydistance2/trace-m6-' agent1 '.txt'];
+	[dbn1,engine1] = learnLfODBN(traces1,20,4,8,1,'tmp-lfodbn.txt');
+%	[dbn1,engine1] = learnIOHMM(traces1,20,4,8,1);
+%	[dbn1,engine1] = learnHMM(traces1,20,4,8,1);
+	model1 = engine1;
+%	model1 = jtree_inf_engine(dbn1);
+	for l = 1:size(learners,1)
+		learner = learners{l};
+		traces2 = ['M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m0-' agent1 '.txt';
+				   'M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m1-' agent1 '.txt';
+				   'M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m2-' agent1 '.txt';
+				   'M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m3-' agent1 '.txt';
+				   'M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m4-' agent1 '.txt';
+				   'M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m5-' agent1 '.txt';
+				   'M:/Desktop/workspace/LFOsimulator/LFO-traces-fourraydistance/' learner '/trace-m6-' agent1 '.txt'];
+		[dbn2,engine2] = learnLfODBN(traces2,20,4,8,1,'tmp-lfodbn.txt');
+	%	[dbn2,engine2] = learnIOHMM(traces2,20,4,8,1);
+	%	[dbn2,engine2] = learnHMM(traces2,20,4,8,1);
+		model2 = engine2;
+	%	model2 = jtree_inf_engine(dbn2);
+		sym = traceSimilarityLFODBN(model1, model2, traces1, traces2,8,1);
+		disp(['Evaluating the similarity of for ' agent1 ' and ' learner ': ' num2str(sym)]);
+	end
+end
+

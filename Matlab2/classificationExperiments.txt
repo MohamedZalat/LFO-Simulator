@@ -1,0 +1,58 @@
+%%% 
+%%% Vacuum cleaner domain evaluation: classification of a trace in each one of the expert models
+%%%
+agents = {'FixedSequenceAgent';'RandomAgent';'SmartRandomAgent';
+		  'WallFollowerAgent';'SmartWallFollowerAgent';
+		  'StraightLineAgent';'SmartStraightLineAgent';'ZigZagAgent'};
+learners ={'expert';'random';'memorize';'nnet';'nnetk2';'bnet';'bnetk2';'lfodbn'};
+
+expertDBNs = {};
+expertEngines = {};
+
+for a1 = 1:size(agents,1)
+	agent1 = agents{a1};
+	traces1 = ['traces-fourraydistance/trace-m0-' agent1 '.txt';
+			   'traces-fourraydistance/trace-m1-' agent1 '.txt';
+			   'traces-fourraydistance/trace-m2-' agent1 '.txt';
+			   'traces-fourraydistance/trace-m3-' agent1 '.txt';
+			   'traces-fourraydistance/trace-m4-' agent1 '.txt';
+			   'traces-fourraydistance/trace-m5-' agent1 '.txt';
+			   'traces-fourraydistance/trace-m6-' agent1 '.txt'];
+	[dbn1,engine1] = learnLfODBN(traces1,20,4,8,1,'tmp-lfodbn.txt');
+%	[dbn1,engine1] = learnIOHMM(traces1,20,4,8,1);
+%	[dbn1,engine1] = learnHMM(traces1,20,4,8,1);
+	expertDBNs{a1} = dbn1;
+	expertEngines{a1} = engine1;
+end
+for l = 1:size(learners,1)
+	learner = learners{l};
+	for a1 = 1:size(agents,1)
+		agent1 = agents{a1};
+		correct = 0;
+		traces2 = ['LFO-traces-fourraydistance/' learner '/trace-m0-' agent1 '.txt';
+				   'LFO-traces-fourraydistance/' learner '/trace-m1-' agent1 '.txt';
+				   'LFO-traces-fourraydistance/' learner '/trace-m2-' agent1 '.txt';
+				   'LFO-traces-fourraydistance/' learner '/trace-m3-' agent1 '.txt';
+				   'LFO-traces-fourraydistance/' learner '/trace-m4-' agent1 '.txt';
+				   'LFO-traces-fourraydistance/' learner '/trace-m5-' agent1 '.txt';
+				   'LFO-traces-fourraydistance/' learner '/trace-m6-' agent1 '.txt'];
+		for t = 1:size(traces2,1)
+			p = [];
+			pmax = 0;
+			expertmax = 0;
+			for expert = 1:size(agents,1)
+				p(expert) = traceProbabilityGivenModel(traces2(t,:), expertDBNs{expert}, expertEngines{expert}, 8, 1);
+				if (expertmax==0 || p(expert)>pmax) 
+					pmax = p(expert);
+					expertmax = expert;
+				end
+			end
+			disp([num2str(p) ' -> ' num2str(expertmax)]);
+			if (expertmax == a1)
+				correct = correct + 1;
+			end
+		end
+		disp(['Learner ' learner ' with expert ' agent1 ' correctly classified: ' num2str(correct)]);
+	end
+end
+
