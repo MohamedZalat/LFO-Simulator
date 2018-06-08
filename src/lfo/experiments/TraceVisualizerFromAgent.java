@@ -40,12 +40,12 @@ public class TraceVisualizerFromAgent {
     public static void main(String []args) throws Exception {
         Agent a = null;
    //    a = new RandomAgent();
-    //a = new FrequencyAgent();
+    a = new FrequencyAgent();
    //     a = new DirtWallAgent();
   //      a = new SmartStraightLineAgent();
     //    a = new WallFollowerAgent();
        // a = new SmartWallFollowerAgent();
-        a = new FixedSequenceAgent();
+       // a = new FixedSequenceAgent();
     //    a = new ZigZagAgent();
 //        Agent a = new SmartRandomExplorerAgent();
 /*

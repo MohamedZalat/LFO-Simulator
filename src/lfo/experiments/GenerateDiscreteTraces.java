@@ -90,13 +90,13 @@ public class GenerateDiscreteTraces {
 
             agentN = 0;
             for(Agent agent:agents) {
-                String fileName = Config.LOCAL_DATA + "zigzag/trace-m" + mapN + "-" + agent.name();
+                String fileName = Config.LOCAL_DATA + "zz/trace-m" + mapN + "-" + agent.name();
 
                 // This generates a trace, while saving it to Matlab format:
-                Trace t = generateTrace(map,agent,200,perception);
-               // FileWriter fw = new FileWriter(fileName + ".xml");
-               // t.toxml(new XMLWriter(fw));
-               // fw.close();
+                Trace t = generateTrace(map,agent,1000,perception);
+               FileWriter fw = new FileWriter(fileName + ".xml");
+               t.toxml(new XMLWriter(fw));
+               fw.close();
                 
                 MatlabTraceTranslator.translateToMatlab(t, perception, fileName+ ".txt");
                // MatlabTraceTranslator.translateToMatlabForNNet(t, perception, fileName+ "-nnet.txt");
