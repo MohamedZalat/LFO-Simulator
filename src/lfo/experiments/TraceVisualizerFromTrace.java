@@ -60,8 +60,10 @@ public class TraceVisualizerFromTrace {
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/nnetk2/trace-m2-ZigZagAgent.xml").getRootElement());
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/bnetk2/trace-m1-ZigZagAgent.xml").getRootElement());
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/lfodbn/trace-m3-FixedSequenceAgent.xml").getRootElement());
-        t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/bnet_new/trace-m0-WallFollowerAgent.xml").getRootElement());
-        ad = new TraceVisualizer(t, 800, 600, 1, "traces-fourraydistance/trace-m1-WallFollowerAgent.txt");
+        //t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/bnet_new/trace-m0-WallFollowerAgent.xml").getRootElement());
+    	t = new Trace(new SAXBuilder().build("C:/Users/patrickgavigan/Documents/GitHub/LFO-Simulator/fxdseq/trace-m0-FixedSequenceAgent.xml").getRootElement());
+        //ad = new TraceVisualizer(t, 800, 600, 1, "traces-fourraydistance/trace-m1-WallFollowerAgent.txt");
+        ad = new TraceVisualizer(t, 800, 600, 1, "C:/Users/patrickgavigan/Documents/GitHub/LFO-Simulator/fxdseq/trace-m0-FixedSequenceAgent_weightedKNN_K_ordered_r.txt");
         frame = new JFrame("Visualizing Trace");
         
         JMenuBar bar = new JMenuBar();
