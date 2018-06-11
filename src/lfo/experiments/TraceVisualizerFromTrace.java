@@ -60,8 +60,8 @@ public class TraceVisualizerFromTrace {
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/nnetk2/trace-m2-ZigZagAgent.xml").getRootElement());
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/bnetk2/trace-m1-ZigZagAgent.xml").getRootElement());
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/lfodbn/trace-m3-FixedSequenceAgent.xml").getRootElement());
-        t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/bnet_new/trace-m0-WallFollowerAgent.xml").getRootElement());
-        ad = new TraceVisualizer(t, 800, 600, 1, "traces-fourraydistance/trace-m1-WallFollowerAgent.txt");
+        t = new Trace(new SAXBuilder().build(System.getProperty("user.dir") + "/../jLOAF-VacuumCleaner/Traces/fxdseq/trace-m1-FixedSequenceAgent.xml").getRootElement());
+        ad = new TraceVisualizer(t, 800, 600, 1, System.getProperty("user.dir") + "/../jLOAF-VacuumCleaner/Traces/fxdseq/trace-m1-FixedSequenceAgent.txt");
         frame = new JFrame("Visualizing Trace");
         
         JMenuBar bar = new JMenuBar();

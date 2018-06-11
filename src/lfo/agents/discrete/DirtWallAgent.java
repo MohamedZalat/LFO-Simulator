@@ -99,18 +99,10 @@ public class DirtWallAgent extends Agent {
 		return false;
 	}
 	private boolean hits() {
-		if((objects[0]==0 && objects[4]==0)||(objects[1]==0 &&objects[5]==0)){
-			return true;
-		}
-		return false;
+		return (objects[0]==0 && objects[4]==0)||(objects[1]==0 &&objects[5]==0);
 	}
 	private boolean seesDirt() {
-		
-			if(objects.toString().equals("00011110")){
-				return true;
-			}
-		
-		return false;
+		return objects.toString().equals("00011110");
 	}
 
 }

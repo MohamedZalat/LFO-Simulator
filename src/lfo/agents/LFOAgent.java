@@ -13,7 +13,7 @@ import java.util.List;
 import lfo.agents.Agent;
 
 /**
- *
+ * 
  * @author santi
  */
 public class LFOAgent extends Agent {

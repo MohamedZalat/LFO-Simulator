@@ -23,12 +23,12 @@ public abstract class Agent {
 
     }
 
-    public void start()
-    {
+    public void start() {
+    	
     }
 
-    public void end()
-    {
+    public void end() {
+    	
     }
 
     
@@ -38,7 +38,9 @@ public abstract class Agent {
         double tmp = 0;
         for(Pair<Action,Double> pair:l) {
             tmp+=pair.m_b;
-            if (random<=tmp) return pair.m_a;
+            if (random<=tmp) {
+            	return pair.m_a;
+            }
         }
         return l.get(l.size()-1).m_a;
     }
