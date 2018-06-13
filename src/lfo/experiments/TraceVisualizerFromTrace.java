@@ -61,8 +61,8 @@ public class TraceVisualizerFromTrace {
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/bnetk2/trace-m1-ZigZagAgent.xml").getRootElement());
 //        Trace t = new Trace(new SAXBuilder().build("LFO-traces-fourraydistance/lfodbn/trace-m3-FixedSequenceAgent.xml").getRootElement());
     	
-    	String xmlFile = "zz/trace-m1-ZigZagAgent.xml";
-        String txtFile = "PredictedTraceFile-ZigZagAgent - CBR,weightedKNN,none,none,kordered,none1.txt";
+    	String xmlFile = "zz/trace-m0-ZigZagAgent.xml";
+        String txtFile = "PredictedTraceFile - ZigZagAgent - CBR,TB,none,none,kunordered,none - m0.txt";
     	t = new Trace(new SAXBuilder().build(System.getProperty("user.dir") + "/../jLOAF-VacuumCleaner/Traces/" + xmlFile).getRootElement());
         ad = new TraceVisualizer(t, 800, 600, 1, System.getProperty("user.dir") + "/../jLOAF-VacuumCleaner/Statistics/" + txtFile);
         frame = new JFrame("Visualizing Trace");
