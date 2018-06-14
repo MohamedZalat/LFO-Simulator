@@ -81,19 +81,19 @@ public class TrajectoryStatePanel extends StatePanel {
             	Point2D.Double p3 = null;
             	int a = (int)Double.parseDouble(resultActions[i]);
             	switch(a){
-            	case 1: // Stand
+            	case 0: // Stand
             		p3 = p1;
             		break;
-            	case 2: // Up
+            	case 1: // Up
             		p3 = new Point2D.Double(p1.x, p1.y - 1);
             		break;
-            	case 3: // Right
+            	case 2: // Right
             		p3 = new Point2D.Double(p1.x + 1, p1.y);
             		break;
-            	case 4: //Left
+            	case 3: //Left
             		p3 = new Point2D.Double(p1.x - 1, p1.y);
             		break;
-            	case 5: // Down
+            	case 4: // Down
             		p3 = new Point2D.Double(p1.x, p1.y + 1);
             		break;
             	}
