@@ -54,6 +54,10 @@ public abstract class Agent {
         return getClass().getSimpleName();
     }
 
+    public String statsFileName() {
+        return name().substring(0, name().length() - 5);
+    }
+
     // This method returns the internal state as a fixed length list of integers.
     // It is thought to be used to translate the internal state to a collection of variables to be used in
     // Dynamic Bayesian Models, like HMMs.
